@@ -253,19 +253,274 @@ textarea{min-height:100px}
 </section>
 
 <!-- GALLERY -->
-<section id="gallery">
- <div class="section-head">
-  <p class="eyebrow">THE ROYAL ART GALLERY</p>
-  <h2>The Museum of Ishaa</h2>
-  <p>Every picture is a masterpiece. Add your favourite photographs to make this gallery yours.</p>
- </div>
- <div class="grid" id="photoGrid">
-  <figure class="photo" style="--angle:-2deg"><img src="images/ishaa-01.jpeg" alt="Ishaa portrait" onerror="this.style.display='none';this.parentElement.querySelector('.fallback').style.display='block'"><div class="fallback" style="display:none;text-align:center;padding:60px 5px">🌸 Add ishaa-01.jpeg</div><figcaption>Our beautiful princess</figcaption></figure>
-  <figure class="photo" style="--angle:2deg"><img src="images/ishaa-02.jpeg" alt="Ishaa smiling" onerror="this.style.display='none';this.parentElement.querySelector('.fallback').style.display='block'"><div class="fallback" style="display:none;text-align:center;padding:60px 5px">🦋 Add ishaa-02.jpeg</div><figcaption>That lovely smile</figcaption></figure>
-  <figure class="photo" style="--angle:-1deg"><img src="images/ishaa-03.jpeg" alt="Ishaa memory" onerror="this.style.display='none';this.parentElement.querySelector('.fallback').style.display='block'"><div class="fallback" style="display:none;text-align:center;padding:60px 5px">💗 Add ishaa-03.jpeg</div><figcaption>My favourite masterpiece</figcaption></figure>
-  <figure class="photo" style="--angle:2deg"><img src="images/memory-01.jpeg" alt="Our memory" onerror="this.style.display='none';this.parentElement.querySelector('.fallback').style.display='block'"><div class="fallback" style="display:none;text-align:center;padding:60px 5px">📸 Add memory-01.jpeg</div><figcaption>A moment to remember</figcaption></figure>
- </div>
- <p class="small" style="text-align:center;margin-top:22px">Add your own photographs in the images folder.</p>
+
+<!-- ISHAA'S ROMANTIC PHOTO GALLERY -->
+<section id="ishaa-gallery">
+  <style>
+    #ishaa-gallery {
+      padding: 65px 20px;
+      text-align: center;
+      color: #fff;
+      background: linear-gradient(135deg, #2b1742, #713c72, #bd7194);
+      font-family: Georgia, serif;
+      overflow: hidden;
+    }
+
+    #ishaa-gallery h2 {
+      font-size: clamp(30px, 5vw, 46px);
+      color: #ffe2f1;
+      text-shadow: 0 0 15px #ff9bd0;
+      margin-bottom: 12px;
+    }
+
+    #ishaa-gallery .gallery-subtitle {
+      color: #ffe8f5;
+      font-size: 16px;
+      margin-bottom: 35px;
+    }
+
+    #ishaa-gallery .gallery-grid {
+      max-width: 1050px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 24px;
+    }
+
+    #ishaa-gallery .photo-card {
+      background: rgba(255,255,255,.13);
+      padding: 12px;
+      border: 1px solid rgba(255,220,240,.6);
+      border-radius: 18px;
+      box-shadow: 0 0 20px rgba(255,160,210,.25);
+      transition: transform .35s, box-shadow .35s;
+      cursor: pointer;
+    }
+
+    #ishaa-gallery .photo-card:hover {
+      transform: translateY(-9px) scale(1.025);
+      box-shadow: 0 0 30px #ffb4df;
+    }
+
+    #ishaa-gallery .photo-card img {
+      width: 100%;
+      height: 270px;
+      object-fit: cover;
+      border-radius: 12px;
+      display: block;
+      background: rgba(255,255,255,.15);
+    }
+
+    #ishaa-gallery .photo-card p {
+      color: #ffe5f3;
+      margin: 14px 4px 5px;
+      font-size: 17px;
+    }
+
+    #ishaa-gallery .photo-card .heart {
+      color: #ffb5d8;
+    }
+
+    #ishaa-gallery .gallery-note {
+      margin-top: 40px;
+      font-size: 19px;
+      color: #ffe2f1;
+      line-height: 1.7;
+    }
+
+    /* FULL SCREEN PHOTO VIEWER */
+    #ishaa-gallery .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 99999;
+      background: rgba(15, 5, 25, .96);
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      padding: 20px;
+    }
+
+    #ishaa-gallery .lightbox.active {
+      display: flex;
+    }
+
+    #ishaa-gallery .lightbox img {
+      max-width: 90%;
+      max-height: 75vh;
+      object-fit: contain;
+      border: 3px solid #ffc5e3;
+      border-radius: 14px;
+      box-shadow: 0 0 30px #f99bd0;
+    }
+
+    #ishaa-gallery .lightbox-caption {
+      color: #ffe2f1;
+      margin-top: 15px;
+      font-size: 18px;
+    }
+
+    #ishaa-gallery .close-lightbox {
+      position: absolute;
+      top: 18px;
+      right: 25px;
+      font-size: 38px;
+      color: white;
+      cursor: pointer;
+      background: none;
+      border: none;
+    }
+
+    #ishaa-gallery .gallery-controls {
+      display: flex;
+      gap: 25px;
+      margin-top: 20px;
+    }
+
+    #ishaa-gallery .gallery-controls button {
+      border: 1px solid #ffc5e3;
+      color: white;
+      background: rgba(255,255,255,.15);
+      padding: 10px 22px;
+      border-radius: 30px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    #ishaa-gallery .gallery-controls button:hover {
+      background: #c65b9b;
+    }
+
+    @media(max-width: 500px) {
+      #ishaa-gallery .gallery-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      #ishaa-gallery .photo-card {
+        padding: 7px;
+      }
+
+      #ishaa-gallery .photo-card img {
+        height: 190px;
+      }
+
+      #ishaa-gallery .photo-card p {
+        font-size: 14px;
+      }
+    }
+  </style>
+
+  <h2>✨ Ishaa's Magical Memories ✨</h2>
+  <p class="gallery-subtitle">
+    Every picture holds a little piece of magic. 💗
+  </p>
+
+  <div class="gallery-grid">
+
+    <div class="photo-card" data-index="0">
+      <img src="./images/ishaa-01.jpeg"
+           alt="Beautiful Ishaa"
+           loading="lazy"
+           onerror="this.alt='Image not found: ishaa-01.jpeg'; this.style.objectFit='contain';">
+      <p>My Beautiful Princess <span class="heart">♥</span></p>
+    </div>
+
+    <div class="photo-card" data-index="1">
+      <img src="./images/ishaa-02.jpeg"
+           alt="Ishaa's lovely smile"
+           loading="lazy"
+           onerror="this.alt='Image not found: ishaa-02.jpeg'; this.style.objectFit='contain';">
+      <p>Your Smile, My Happiness <span class="heart">♥</span></p>
+    </div>
+
+    <div class="photo-card" data-index="2">
+      <img src="./images/ishaa-03.jpeg"
+           alt="A special memory"
+           loading="lazy"
+           onerror="this.alt='Image not found: ishaa-03.jpeg'; this.style.objectFit='contain';">
+      <p>A Perfect Little Moment <span class="heart">♥</span></p>
+    </div>
+
+    <div class="photo-card" data-index="3">
+      <img src="./images/memory-01.jpeg"
+           alt="Our favourite memory"
+           loading="lazy"
+           onerror="this.alt='Image not found: memory-01.jpeg'; this.style.objectFit='contain';">
+      <p>A Memory I Treasure <span class="heart">♥</span></p>
+    </div>
+
+  </div>
+
+  <p class="gallery-note">
+    "If I could keep one moment forever,<br>
+    I would choose every moment with you." 💕
+  </p>
+
+  <!-- PHOTO VIEWER -->
+  <div class="lightbox" id="ishaa-lightbox">
+    <button class="close-lightbox" aria-label="Close">&times;</button>
+    <img id="ishaa-large-photo" src="" alt="Enlarged memory">
+    <div class="lightbox-caption" id="ishaa-photo-caption"></div>
+
+    <div class="gallery-controls">
+      <button type="button" id="ishaa-prev">❮ Previous</button>
+      <button type="button" id="ishaa-next">Next ❯</button>
+    </div>
+  </div>
+
+  <script>
+    (() => {
+      const section = document.getElementById("ishaa-gallery");
+      if (!section || section.dataset.initialized) return;
+      section.dataset.initialized = "true";
+
+      const cards = [...section.querySelectorAll(".photo-card")];
+      const captions = cards.map(card => card.querySelector("p").innerText);
+      const photos = cards.map(card => card.querySelector("img").src);
+
+      const lightbox = section.querySelector(".lightbox");
+      const largePhoto = section.querySelector("#ishaa-large-photo");
+      const caption = section.querySelector("#ishaa-photo-caption");
+      let current = 0;
+
+      function showPhoto(index) {
+        current = (index + photos.length) % photos.length;
+        largePhoto.src = photos[current];
+        caption.textContent = captions[current];
+        lightbox.classList.add("active");
+      }
+
+      cards.forEach((card, index) => {
+        card.addEventListener("click", () => showPhoto(index));
+      });
+
+      section.querySelector("#ishaa-prev").addEventListener("click", () => {
+        showPhoto(current - 1);
+      });
+
+      section.querySelector("#ishaa-next").addEventListener("click", () => {
+        showPhoto(current + 1);
+      });
+
+      section.querySelector(".close-lightbox").addEventListener("click", () => {
+        lightbox.classList.remove("active");
+      });
+
+      lightbox.addEventListener("click", event => {
+        if (event.target === lightbox) {
+          lightbox.classList.remove("active");
+        }
+      });
+
+      document.addEventListener("keydown", event => {
+        if (!lightbox.classList.contains("active")) return;
+        if (event.key === "Escape") lightbox.classList.remove("active");
+        if (event.key === "ArrowRight") showPhoto(current + 1);
+        if (event.key === "ArrowLeft") showPhoto(current - 1);
+      });
+    })();
+  </script>
 </section>
 
 <!-- 20 REASONS -->
