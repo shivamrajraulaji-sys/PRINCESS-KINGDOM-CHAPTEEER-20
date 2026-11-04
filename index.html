@@ -753,6 +753,175 @@ document.getElementById("finalLetterBtn").onclick=()=>{
  if(!letter.classList.contains("hidden"))letter.scrollIntoView({behavior:"smooth",block:"nearest"});
 };
 
+<section id="princess-fireworks">
+  <div class="firework-content">
+    <div class="crown">👑</div>
+    <h2>The Sky Celebrates You, Ishaa!</h2>
+    <p>
+      If every firework represented one reason
+      why you're special, the sky would never
+      stop shining.
+    </p>
+
+    <button onclick="launchPrincessFireworks()">
+      🎆 Make a Wish, Princess 🎆
+    </button>
+
+    <h3>You are my once-in-a-lifetime magic. ❤️</h3>
+  </div>
+
+  <canvas id="fireworks-canvas"></canvas>
+</section>
+
+<style>
+#princess-fireworks {
+  position: relative;
+  min-height: 550px;
+  background: radial-gradient(circle, #42134f, #10051e);
+  color: white;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 40px 20px;
+}
+
+#fireworks-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.firework-content {
+  position: relative;
+  z-index: 2;
+  max-width: 600px;
+}
+
+.firework-content .crown {
+  font-size: 65px;
+  animation: crownGlow 2s infinite alternate;
+}
+
+.firework-content h2 {
+  color: #ffd6f2;
+  font-size: clamp(28px, 5vw, 44px);
+  text-shadow: 0 0 20px #ff55bb;
+}
+
+.firework-content p {
+  font-size: 18px;
+  line-height: 1.8;
+}
+
+.firework-content button {
+  margin: 25px 0;
+  padding: 16px 28px;
+  border: 1px solid #ffd2ef;
+  border-radius: 40px;
+  background: linear-gradient(45deg, #ff4fa3, #a855f7);
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  box-shadow: 0 0 25px #ff4fa3;
+}
+
+.firework-content h3 {
+  color: #ffd5e9;
+  font-style: italic;
+}
+
+@keyframes crownGlow {
+  from { filter: drop-shadow(0 0 5px gold); }
+  to { filter: drop-shadow(0 0 25px hotpink); }
+}
+</style>
+
+<script>
+const canvas = document.getElementById("fireworks-canvas");
+const ctx = canvas.getContext("2d");
+
+let particles = [];
+let animationRunning = false;
+
+function resizeFireworks() {
+  const rect = canvas.getBoundingClientRect();
+  const dpr = Math.min(window.devicePixelRatio || 1, 2);
+  canvas.width = rect.width * dpr;
+  canvas.height = rect.height * dpr;
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+}
+
+resizeFireworks();
+window.addEventListener("resize", resizeFireworks);
+
+function explode(x, y) {
+  const colors = ["#ff4fa3", "#ffd700", "#ffffff",
+                  "#c084fc", "#ff8cba", "#7df9ff"];
+
+  const color = colors[Math.floor(Math.random() * colors.length)];
+
+  for (let i = 0; i < 90; i++) {
+    const angle = Math.random() * Math.PI * 2;
+    const speed = Math.random() * 5 + 1;
+
+    particles.push({
+      x, y,
+      vx: Math.cos(angle) * speed,
+      vy: Math.sin(angle) * speed,
+      alpha: 1,
+      color,
+      size: Math.random() * 3 + 1
+    });
+  }
+}
+
+function launchPrincessFireworks() {
+  const rect = canvas.getBoundingClientRect();
+
+  for (let i = 0; i < 6; i++) {
+    setTimeout(() => {
+      explode(
+        Math.random() * rect.width,
+        Math.random() * rect.height * 0.65
+      );
+    }, i * 350);
+  }
+}
+
+function animateFireworks() {
+  const rect = canvas.getBoundingClientRect();
+  ctx.clearRect(0, 0, rect.width, rect.height);
+
+  particles = particles.filter(p => p.alpha > 0.02);
+
+  particles.forEach(p => {
+    p.x += p.vx;
+    p.y += p.vy;
+    p.vy += 0.035;
+    p.vx *= 0.99;
+    p.alpha -= 0.012;
+
+    ctx.globalAlpha = p.alpha;
+    ctx.fillStyle = p.color;
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+    ctx.fill();
+  });
+
+  ctx.globalAlpha = 1;
+  requestAnimationFrame(animateFireworks);
+}
+
+animateFireworks();
+
+// Automatic opening celebration
+setTimeout(launchPrincessFireworks, 800);
+</script>
+
 // MUSIC - ONLY AFTER USER INTERACTION
 const music=document.getElementById("bgMusic");
 const musicBtn=document.getElementById("musicBtn");
