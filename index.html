@@ -1,1 +1,785 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#f9dbea">
+<title>Ishaa | The Princess Chapter 20</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Great+Vibes&family=Poppins:wght@300;400;500;600;700&display=swap');
+
+:root {
+ --pink:#f6c9df;--rose:#c77b9e;--deep:#8d456d;
+ --lav:#d9cafa;--gold:#d9b36c;--cream:#fff9fc;
+ --ink:#613e57;--glass:rgba(255,255,255,.68);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;color:var(--ink);font-family:Poppins,sans-serif;
+ background:linear-gradient(140deg,#fff5fa,#f7eaff,#fff0f5);
+ overflow-x:hidden}
+button{font:inherit;cursor:pointer}
+button:focus-visible,a:focus-visible{outline:3px solid var(--deep);outline-offset:4px}
+h1,h2,h3{font-family:"Cormorant Garamond",serif}
+h2{font-size:clamp(2.2rem,6vw,3.6rem);margin:0 0 12px}
+p{line-height:1.8}
+.script{font-family:"Great Vibes",cursive;color:var(--deep)}
+.small{font-size:.85rem;opacity:.8}
+section{padding:80px 6%;scroll-margin-top:75px}
+.section-head{text-align:center;max-width:750px;margin:0 auto 35px}
+.section-head p{max-width:600px;margin:auto}
+.btn{border:0;border-radius:30px;padding:13px 24px;
+ background:linear-gradient(120deg,#bd7199,#e5a8c7);color:white;
+ box-shadow:0 8px 25px #bd719955;transition:.3s}
+.btn:hover{transform:translateY(-3px);box-shadow:0 12px 28px #bd719977}
+.btn.light{background:white;color:var(--deep);border:1px solid #eac8d9}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.card{background:var(--glass);border:1px solid #fff;
+ border-radius:23px;padding:24px;box-shadow:0 12px 35px #9f668c16;
+ backdrop-filter:blur(12px)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
+.hidden{display:none!important}
+#progress{position:fixed;top:0;left:0;height:4px;width:0;
+ background:linear-gradient(90deg,#b66c98,#e8c477);z-index:1000}
+#nav{position:sticky;top:0;z-index:99;background:#fff9f0dc;
+ backdrop-filter:blur(14px);border-bottom:1px solid #eed5e4}
+.nav-inner{max-width:1200px;margin:auto;padding:12px 4%;
+ display:flex;align-items:center;justify-content:space-between;gap:12px}
+.brand{font-family:"Great Vibes";font-size:1.9rem;color:var(--deep)}
+#navlinks{display:flex;gap:14px;flex-wrap:wrap;justify-content:flex-end}
+#navlinks a{text-decoration:none;color:var(--ink);font-size:.76rem}
+#navlinks a:hover{color:var(--rose)}
+#menuBtn{display:none}
+.hero{min-height:90vh;position:relative;display:flex;align-items:center;
+ justify-content:center;text-align:center;overflow:hidden;padding:55px 18px;
+ background:radial-gradient(ellipse at 50% 85%,#fff 0%,transparent 48%),
+ linear-gradient(150deg,#f9d9e9,#dcd2f6 60%,#fce7f0)}
+.hero:before{content:"";position:absolute;inset:0;opacity:.35;
+ background-image:radial-gradient(#fff 1.5px,transparent 1.5px);
+ background-size:35px 35px;animation:twinkle 4s infinite alternate}
+.hero-content{position:relative;z-index:2;max-width:850px}
+.eyebrow{letter-spacing:4px;text-transform:uppercase;font-size:.72rem}
+.hero h1{font-size:clamp(3.8rem,12vw,8rem);line-height:.95;margin:20px 0}
+.hero .script{font-size:clamp(2rem,6vw,4rem)}
+.castle{font-size:clamp(5rem,15vw,10rem);filter:drop-shadow(0 12px 12px #8e548a33);
+ animation:float 4s ease-in-out infinite}
+.hero-bottom{margin-top:25px}
+#invitation{position:fixed;inset:0;z-index:500;display:grid;place-items:center;
+ background:linear-gradient(145deg,#f5c9df,#d9cafa,#fff0f7);padding:20px;
+ transition:opacity .8s}
+.invitation-card{max-width:570px;width:100%;text-align:center;padding:40px 25px;
+ background:#fff9;border:1px solid white;border-radius:30px;
+ box-shadow:0 25px 80px #794d772b}
+.invitation-card .envelope{font-size:5rem;animation:float 2.5s infinite}
+.invitation-card h1{font-size:3.6rem;margin:5px}
+#birthday-banner{display:none;text-align:center;padding:25px;
+ background:linear-gradient(100deg,#f4c5dc,#e4d5fa,#f9e1ec);
+ font-family:"Great Vibes";font-size:clamp(2rem,6vw,4rem)}
+.countdown{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin:30px 0}
+.timebox{min-width:90px;padding:18px 12px;background:white;
+ border-radius:18px;box-shadow:0 8px 25px #a65d8220}
+.timebox strong{display:block;font-size:2rem;color:var(--deep)}
+.timebox span{font-size:.7rem;text-transform:uppercase;letter-spacing:2px}
+#timerMessage{font-size:1.1rem;color:var(--deep);font-weight:600}
+#chapter{background:linear-gradient(140deg,#f8e5ef,#f0eaff)}
+.big20{font-family:"Cormorant Garamond";font-size:clamp(8rem,28vw,17rem);
+ line-height:.9;color:#c77b9e;text-shadow:5px 7px #fff}
+.photo{padding:10px;background:white;border-radius:12px;box-shadow:0 8px 25px #754d6c20;
+ transform:rotate(var(--angle,0deg));transition:.3s}
+.photo:hover{transform:rotate(0) scale(1.04)}
+.photo img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:6px;display:block}
+.photo figcaption{text-align:center;padding:12px 3px 5px;font-family:"Great Vibes";font-size:1.6rem}
+.photo input{width:100%;font-size:.7rem}
+.reason{min-height:165px;display:flex;flex-direction:column;justify-content:center;
+ align-items:center;text-align:center;cursor:pointer;transition:.3s}
+.reason:hover{transform:translateY(-5px)}
+.reason .number{font-size:.75rem;letter-spacing:3px;color:var(--rose)}
+.reason .reveal{font-size:1.5rem;color:var(--deep);font-family:"Cormorant Garamond"}
+.reason .detail{display:none;margin-top:10px;font-size:.9rem}
+.reason.open .detail{display:block}
+#cakeArea{text-align:center;background:linear-gradient(140deg,#f9e3ef,#f3e9ff)}
+.cake{position:relative;width:260px;height:190px;margin:65px auto 30px}
+.cake-top{position:absolute;top:65px;left:12px;width:236px;height:65px;
+ border-radius:50%;background:#fff1f7;border:4px solid #e6a6c4;z-index:3}
+.cake-body{position:absolute;top:95px;left:12px;width:236px;height:80px;
+ background:linear-gradient(90deg,#e5a1c0,#fff0f5,#d887ad);
+ border-radius:0 0 22px 22px;border-bottom:8px solid #c5799d}
+.cake-drip{position:absolute;top:108px;left:25px;width:210px;height:30px;
+ border-radius:0 0 50% 50%;border-bottom:5px dotted #fff;z-index:4}
+.candle{position:absolute;top:22px;width:9px;height:47px;border-radius:4px;
+ background:repeating-linear-gradient(45deg,#fff 0 5px,#d68caf 5px 9px);z-index:5}
+.flame{position:absolute;top:-17px;left:-3px;width:15px;height:20px;
+ background:radial-gradient(ellipse at 50% 70%,#fff9a8,#ff9f46 65%,transparent 70%);
+ border-radius:50%;animation:flicker .5s infinite alternate}
+.candle.off .flame{display:none}
+.cake-controls{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.gift{font-size:3rem;cursor:pointer;transition:.3s}
+.gift:hover{transform:scale(1.2) rotate(-8deg)}
+.gift-card{text-align:center}
+.gift-message{min-height:65px;margin-top:10px;font-size:.9rem}
+.galaxy{background:radial-gradient(ellipse at center,#382750,#1b1734);
+ color:white;overflow:hidden}
+.galaxy .section-head p{color:#eadcf7}
+.stars{display:grid;grid-template-columns:repeat(auto-fit,minmax(85px,1fr));gap:12px}
+.star{background:transparent;border:0;color:#ffe9a8;font-size:2rem;
+ animation:twinkle 2s infinite alternate}
+.star span{display:block;font-size:.68rem;color:#fff}
+#starMessage{min-height:50px;text-align:center;font-size:1.2rem;color:#ffe2f1;margin-top:25px}
+.letter{cursor:pointer;text-align:center;transition:.3s}
+.letter:hover{transform:translateY(-5px)}
+.letter .env{font-size:3rem}
+.letter p{display:none;font-size:.9rem}
+.letter.open p{display:block}
+#loveWall{display:grid;grid-template-columns:repeat(auto-fit,minmax(90px,1fr));gap:8px}
+.love-word{padding:9px 3px;background:#fff8;border-radius:12px;
+ text-align:center;color:#b86b96;font-family:"Great Vibes";font-size:1.2rem;
+ animation:pop .5s both}
+#scratchCanvas{max-width:100%;border-radius:15px;touch-action:none;cursor:crosshair}
+.scratch-wrap{display:inline-block;position:relative}
+.scratch-secret{position:absolute;inset:0;display:grid;place-items:center;
+ font-family:"Great Vibes";font-size:2rem;color:var(--deep);pointer-events:none}
+#certificate{border:8px double #d4ad71;background:#fff9f0;padding:30px;
+ text-align:center;max-width:650px;margin:25px auto}
+#certificate h2{color:#a86a8a}
+#fireworks{position:fixed;inset:0;pointer-events:none;z-index:200}
+footer{text-align:center;padding:55px 15px;background:#f4d9e8}
+footer .script{font-size:3rem}
+.modal{position:fixed;inset:0;background:#271629a8;z-index:400;
+ display:none;place-items:center;padding:20px}
+.modal.show{display:grid}
+.modal-content{max-width:500px;width:100%;background:#fff7fb;border-radius:25px;
+ padding:30px;text-align:center;position:relative}
+.close{position:absolute;right:15px;top:10px;border:0;background:none;font-size:1.7rem}
+input[type=text],textarea{width:100%;padding:12px;border:1px solid #e5c7d8;
+ border-radius:12px;background:white;color:var(--ink);font:inherit}
+textarea{min-height:100px}
+#musicBtn{position:fixed;bottom:18px;right:18px;z-index:90;
+ border:0;border-radius:50%;width:52px;height:52px;background:#fff;
+ box-shadow:0 5px 20px #8d456d44;color:var(--deep);font-size:1.3rem}
+@keyframes float{50%{transform:translateY(-14px)}}
+@keyframes twinkle{to{opacity:.55;filter:brightness(1.4)}}
+@keyframes flicker{to{transform:scale(.8) translateY(2px)}}
+@keyframes pop{from{opacity:0;transform:scale(.7)}to{opacity:1;transform:scale(1)}}
+@media(max-width:720px){
+ #menuBtn{display:block;border:0;background:none;font-size:1.5rem;color:var(--deep)}
+ #navlinks{display:none;position:absolute;top:55px;left:0;right:0;
+ background:#fff9f4;padding:20px;box-shadow:0 10px 20px #0001}
+ #navlinks.show{display:grid;grid-template-columns:1fr 1fr}
+ #navlinks a{padding:7px}
+ section{padding:65px 5%}
+ .timebox{min-width:70px}
+ .timebox strong{font-size:1.5rem}
+}
+@media(prefers-reduced-motion:reduce){
+ *,*:before,*:after{animation-duration:.01ms!important;transition-duration:.01ms!important;
+ scroll-behavior:auto!important}
+}
+</style>
+</head>
+<body>
+<div id="progress"></div>
+<canvas id="fireworks"></canvas>
+
+<!-- ROYAL INVITATION -->
+<div id="invitation">
+ <div class="invitation-card">
+  <div class="envelope">💌</div>
+  <p class="eyebrow">A royal invitation for one special girl</p>
+  <h1 class="script">Dear Princess Ishaa</h1>
+  <p>A magical kingdom has been created, and its most precious person is waiting to enter.</p>
+  <p class="script" style="font-size:2rem">Your Chapter 20 begins here...</p>
+  <button class="btn" id="enterBtn">✨ ENTER YOUR KINGDOM ✨</button>
+ </div>
+</div>
+
+<nav id="nav">
+ <div class="nav-inner">
+  <div class="brand">Ishaa's Kingdom ♡</div>
+  <button id="menuBtn" aria-label="Open menu">☰</button>
+  <div id="navlinks">
+   <a href="#home">Home</a><a href="#countdown">Countdown</a>
+   <a href="#gallery">Gallery</a><a href="#reasons">20 Reasons</a>
+   <a href="#cakeArea">Cake</a><a href="#treasure">Gifts</a>
+   <a href="#letters">Letters</a><a href="#finale">Finale</a>
+  </div>
+ </div>
+</nav>
+
+<div id="birthday-banner">🎂 TODAY IS YOUR DAY, PRINCESS ISHAA! 🎂</div>
+
+<!-- HERO -->
+<header class="hero" id="home">
+ <div class="hero-content">
+  <p class="eyebrow">WELCOME TO YOUR FAIRYTALE</p>
+  <div class="castle">🏰</div>
+  <p class="script">A kingdom made for one beautiful soul</p>
+  <h1>IS<span style="color:#b96e9b">HAA</span></h1>
+  <p class="eyebrow">THE PRINCESS CHAPTER 20</p>
+  <p>Some people make the world beautiful just by existing.<br>
+  This entire little universe is dedicated to you.</p>
+  <div class="hero-bottom"><a href="#countdown" class="btn" style="text-decoration:none">Explore your kingdom ↓</a></div>
+ </div>
+</header>
+
+<!-- COUNTDOWN -->
+<section id="countdown">
+ <div class="section-head">
+  <p class="eyebrow">THE MOST MAGICAL MOMENT</p>
+  <h2>Your Birthday Countdown</h2>
+  <p>Every second brings us closer to celebrating the day the world received you.</p>
+ </div>
+ <div class="countdown" id="timer">
+  <div class="timebox"><strong id="days">--</strong><span>Days</span></div>
+  <div class="timebox"><strong id="hours">--</strong><span>Hours</span></div>
+  <div class="timebox"><strong id="minutes">--</strong><span>Minutes</span></div>
+  <div class="timebox"><strong id="seconds">--</strong><span>Seconds</span></div>
+ </div>
+ <p id="timerMessage" style="text-align:center">A special day is almost here, Princess! 💗</p>
+</section>
+
+<!-- CHAPTER 20 -->
+<section id="chapter">
+ <div class="section-head">
+  <p class="eyebrow">A NEW CHAPTER BEGINS</p>
+  <h2>Twenty looks beautiful on you</h2>
+  <p>Twenty years of smiles, dreams, courage, kindness and a beauty that words can never fully describe.</p>
+ </div>
+ <div style="text-align:center">
+  <div class="big20">20</div>
+  <h2 class="script">Twenty years of magic ✨</h2>
+  <p>May this new chapter bring you the happiness your heart deserves.</p>
+ </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery">
+ <div class="section-head">
+  <p class="eyebrow">THE ROYAL ART GALLERY</p>
+  <h2>The Museum of Ishaa</h2>
+  <p>Every picture is a masterpiece. Add your favourite photographs to make this gallery yours.</p>
+ </div>
+ <div class="grid" id="photoGrid">
+  <figure class="photo" style="--angle:-2deg"><img src="images/ishaa-01.jpg" alt="Ishaa portrait" onerror="this.style.display='none';this.parentElement.querySelector('.fallback').style.display='block'"><div class="fallback" style="display:none;text-align:center;padding:60px 5px">🌸 Add ishaa-01.jpg</div><figcaption>Our beautiful princess</figcaption></figure>
+  <figure class="photo" style="--angle:2deg"><img src="images/ishaa-02.jpg" alt="Ishaa smiling" onerror="this.style.display='none';this.parentElement.querySelector('.fallback').style.display='block'"><div class="fallback" style="display:none;text-align:center;padding:60px 5px">🦋 Add ishaa-02.jpg</div><figcaption>That lovely smile</figcaption></figure>
+  <figure class="photo" style="--angle:-1deg"><img src="images/ishaa-03.jpg" alt="Ishaa memory" onerror="this.style.display='none';this.parentElement.querySelector('.fallback').style.display='block'"><div class="fallback" style="display:none;text-align:center;padding:60px 5px">💗 Add ishaa-03.jpg</div><figcaption>My favourite masterpiece</figcaption></figure>
+  <figure class="photo" style="--angle:2deg"><img src="images/memory-01.jpg" alt="Our memory" onerror="this.style.display='none';this.parentElement.querySelector('.fallback').style.display='block'"><div class="fallback" style="display:none;text-align:center;padding:60px 5px">📸 Add memory-01.jpg</div><figcaption>A moment to remember</figcaption></figure>
+ </div>
+ <p class="small" style="text-align:center;margin-top:22px">Add your own photographs in the images folder.</p>
+</section>
+
+<!-- 20 REASONS -->
+<section id="reasons" style="background:#f9e9f2">
+ <div class="section-head">
+  <p class="eyebrow">TWENTY LITTLE TREASURES</p>
+  <h2>20 Reasons Why You Are Special</h2>
+  <p>Tap each royal card to discover a reason. There are twenty, but I could write a thousand.</p>
+ </div>
+ <div class="grid" id="reasonsGrid"></div>
+</section>
+
+<!-- CAKE -->
+<section id="cakeArea">
+ <div class="section-head">
+  <p class="eyebrow">MAKE A WISH, PRINCESS</p>
+  <h2>Your Magical Birthday Cake 🎂</h2>
+  <p>Twenty candles for twenty beautiful years. Light them, make a wish and cut your cake!</p>
+ </div>
+ <div class="cake" id="cake">
+  <div id="candles"></div>
+  <div class="cake-top"></div><div class="cake-body"></div><div class="cake-drip"></div>
+ </div>
+ <div class="cake-controls">
+  <button class="btn" id="lightBtn">🕯️ Light candles</button>
+  <button class="btn light" id="blowBtn">🌬️ Blow candles</button>
+  <button class="btn" id="cutBtn">🎂 CUT THE CAKE!</button>
+ </div>
+ <p id="cakeMessage" style="text-align:center;margin-top:22px">Your twenty candles are waiting for you! 💗</p>
+</section>
+
+<!-- TREASURE -->
+<section id="treasure">
+ <div class="section-head">
+  <p class="eyebrow">THE SECRET TREASURE CHAMBER</p>
+  <h2>Five Magical Gifts</h2>
+  <p>Five little surprises, created with a lot of love. Tap each gift to unlock it.</p>
+ </div>
+ <div class="grid" id="giftsGrid"></div>
+</section>
+
+<!-- GALAXY -->
+<section class="galaxy" id="galaxy">
+ <div class="section-head">
+  <p class="eyebrow">SOMEWHERE BEYOND THE STARS</p>
+  <h2>A Universe Named After You ✨</h2>
+  <p>Touch a star. Each one holds a little secret about why you shine in my world.</p>
+ </div>
+ <div class="stars" id="stars"></div>
+ <div id="starMessage">✨ Choose a star to reveal your magic ✨</div>
+</section>
+
+<!-- LETTERS -->
+<section id="letters">
+ <div class="section-head">
+  <p class="eyebrow">SIX LETTERS FROM MY HEART</p>
+  <h2>Open When...</h2>
+  <p>Save these little letters for the moments when you need them most.</p>
+ </div>
+ <div class="grid" id="lettersGrid"></div>
+</section>
+
+<!-- 100 I LOVE YOU -->
+<section style="background:#f9e8f2" id="love">
+ <div class="section-head">
+  <p class="eyebrow">A HUNDRED LITTLE CONFESSIONS</p>
+  <h2>100 Times I Love You</h2>
+  <p>Count them. Each one is meant for you.</p>
+ </div>
+ <div style="text-align:center;margin-bottom:22px">
+  <button class="btn" id="loveBtn">💗 Reveal 100 I LOVE YOUs</button>
+ </div>
+ <div id="loveWall"></div>
+ <h2 class="script" style="text-align:center;margin-top:30px">And even 100 times isn't enough.</h2>
+</section>
+
+<!-- WISH GENERATOR -->
+<section id="wishes">
+ <div class="section-head">
+  <p class="eyebrow">A LITTLE WISH FROM MY HEART</p>
+  <h2>Your Birthday Wish Generator</h2>
+  <p>Whenever you need a beautiful thought, press the button.</p>
+ </div>
+ <div class="card" style="max-width:650px;margin:auto;text-align:center">
+  <div style="font-size:3rem">🦋</div>
+  <p id="wishText" style="font-family:'Cormorant Garamond';font-size:1.5rem">May every dream you whisper to the stars find its way to you.</p>
+  <button class="btn" id="wishBtn">Reveal another wish ✨</button>
+ </div>
+</section>
+
+<!-- CERTIFICATE -->
+<section id="certificateSection" style="background:#f8e9f1">
+ <div class="section-head">
+  <p class="eyebrow">A ROYAL HONOUR</p>
+  <h2>Your Princess Certificate</h2>
+  <p>One official certificate from your very own kingdom.</p>
+ </div>
+ <div id="certificate">
+  <div style="font-size:3rem">👑</div>
+  <p class="eyebrow">ROYAL KINGDOM OF LOVE</p>
+  <h2 class="script">Certificate of Extraordinary Beauty</h2>
+  <p>This certificate is proudly presented to</p>
+  <h1 class="script" style="font-size:4rem">Princess Ishaa</h1>
+  <p>For being wonderfully unique, beautifully kind, endlessly precious and officially the brightest star in my universe.</p>
+  <p><b>Chapter 20 · 5 November 2026</b></p>
+  <p class="script" style="font-size:2rem">Forever your biggest admirer ♡</p>
+ </div>
+ <div style="text-align:center"><button class="btn" id="printBtn">👑 Download / Print Certificate</button></div>
+</section>
+
+<!-- SCRATCH CARD -->
+<section id="scratch">
+ <div class="section-head">
+  <p class="eyebrow">A HIDDEN LITTLE SECRET</p>
+  <h2>Scratch to Reveal 💌</h2>
+  <p>Use your finger or mouse to scratch away the pink layer.</p>
+ </div>
+ <div style="text-align:center">
+  <div class="scratch-wrap">
+   <div class="scratch-secret">You are my favourite person. ❤️</div>
+   <canvas id="scratchCanvas" width="340" height="150" aria-label="Scratch this card to reveal a secret"></canvas>
+  </div>
+  <p class="small">Scratch the card to reveal your surprise.</p>
+  <button class="btn light" id="resetScratch">Reset scratch card</button>
+ </div>
+</section>
+
+<!-- VOICE MESSAGE -->
+<section id="voice" style="background:#f9e9f2">
+ <div class="section-head">
+  <p class="eyebrow">A VOICE FROM SOMEONE WHO ADORES YOU</p>
+  <h2>A Message Just for You 🎧</h2>
+  <p>Sometimes a voice says what words on a screen cannot.</p>
+ </div>
+ <div class="card" style="max-width:550px;margin:auto;text-align:center">
+  <div style="font-size:3rem">☎️</div>
+  <h3 class="script" style="font-size:2rem">A little call from me</h3>
+  <audio id="voiceAudio" controls preload="none" style="width:100%">
+   <source src="birthday-voice.mp3" type="audio/mpeg">
+   Your browser does not support audio.
+  </audio>
+  <p class="small">Add your recorded voice message as birthday-voice.mp3 in the main folder.</p>
+ </div>
+</section>
+
+<!-- FINALE -->
+<section id="finale">
+ <div class="section-head">
+  <p class="eyebrow">THE LAST PAGE OF THIS FAIRYTALE</p>
+  <h2>One Last Thing, My Princess</h2>
+  <p>Open the final letter. This is the part I want you to remember.</p>
+ </div>
+ <div class="card" style="max-width:720px;margin:auto;text-align:center">
+  <div style="font-size:4rem">💌</div>
+  <h2 class="script">A letter for Ishaa</h2>
+  <button class="btn" id="finalLetterBtn">Open my heart ❤️</button>
+  <div id="finalLetter" class="hidden" style="text-align:left;margin-top:25px">
+   <p>My dearest Ishaa,</p>
+   <p>Happy 20th birthday to the girl who makes ordinary days feel extraordinary. I wish I could put into words everything that makes you special, but even the most beautiful words seem too small when it comes to you.</p>
+   <p>Your smile, your eyes, your little expressions, your personality and the way you make moments memorable — all of these make you wonderfully you.</p>
+   <p>I hope your twentieth year brings you confidence to chase your dreams, courage to overcome every challenge, countless reasons to smile and the happiness you deserve.</p>
+   <p>Never doubt your beauty. Never underestimate your worth. And never forget that you are an irreplaceable person.</p>
+   <p>Thank you for being you. If I could choose one person to dedicate this little universe to, I would choose you again.</p>
+   <p class="script" style="font-size:2rem">Happy birthday, my beautiful princess. ❤️</p>
+   <p>With all my love,<br>Your favourite admirer.</p>
+  </div>
+ </div>
+ <div style="text-align:center;margin-top:45px">
+  <h2 class="script" style="font-size:clamp(3rem,9vw,6rem)">HAPPY 20TH BIRTHDAY ISHAA!</h2>
+  <p>20 looks beautiful on you, but you make every year beautiful. 👑</p>
+  <button class="btn" id="celebrateBtn">🎆 Celebrate once more!</button>
+ </div>
+</section>
+
+<footer>
+ <div class="script">A universe made just for you, Ishaa.</div>
+ <p>5 November 2026 · Chapter 20</p>
+ <p class="small">Created with love, for one extraordinary girl. ♡</p>
+</footer>
+
+<button id="musicBtn" title="Play or pause birthday music" aria-label="Play or pause music">♫</button>
+<audio id="bgMusic" loop preload="none">
+ <source src="birthday-music.mp3" type="audio/mpeg">
+</audio>
+
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+ <div class="modal-content">
+  <button class="close" id="closeModal" aria-label="Close">×</button>
+  <div style="font-size:3rem">💗</div>
+  <h2 id="modalTitle" class="script">A secret for you</h2>
+  <p id="modalText"></p>
+  <button class="btn" id="modalOK">Aww, thank you ❤️</button>
+ </div>
+</div>
+
+<script>
+"use strict";
+
+// PERSONALIZATION
+const princessName = "Ishaa";
+const birthday = new Date("2026-11-05T00:00:00+05:30").getTime();
+
+// COUNTDOWN
+let celebrationStarted = false;
+function updateCountdown(){
+ const remaining = birthday-Date.now();
+ if(remaining<=0){
+  ["days","hours","minutes","seconds"].forEach(id=>document.getElementById(id).textContent="00");
+  document.getElementById("timerMessage").textContent="🎉 IT'S YOUR BIRTHDAY, PRINCESS ISHAA! 🎉";
+  document.getElementById("birthday-banner").style.display="block";
+  if(!celebrationStarted){celebrationStarted=true;celebrate();}
+  return;
+ }
+ const values={
+  days:Math.floor(remaining/86400000),
+  hours:Math.floor(remaining%86400000/3600000),
+  minutes:Math.floor(remaining%3600000/60000),
+  seconds:Math.floor(remaining%60000/1000)
+ };
+ Object.entries(values).forEach(([id,value])=>
+  document.getElementById(id).textContent=String(value).padStart(2,"0"));
+}
+updateCountdown();setInterval(updateCountdown,1000);
+
+// INVITATION
+document.getElementById("enterBtn").addEventListener("click",()=>{
+ const invitation=document.getElementById("invitation");
+ invitation.style.opacity="0";
+ setTimeout(()=>invitation.remove(),850);
+ document.getElementById("home").scrollIntoView();
+});
+
+// NAVIGATION
+document.getElementById("menuBtn").addEventListener("click",()=>{
+ document.getElementById("navlinks").classList.toggle("show");
+});
+document.querySelectorAll("#navlinks a").forEach(a=>a.addEventListener("click",()=>{
+ document.getElementById("navlinks").classList.remove("show");
+}));
+window.addEventListener("scroll",()=>{
+ const max=document.documentElement.scrollHeight-innerHeight;
+ document.getElementById("progress").style.width=(max>0?scrollY/max*100:0)+"%";
+});
+
+// REASONS
+const reasons=[
+["Your smile","Your smile has a beautiful way of making even an ordinary day feel special."],
+["Your eyes","There is something so lovely about the way your eyes express a thousand feelings."],
+["Your kindness","The kindness you carry is one of the most beautiful things about you."],
+["Your laugh","Your laughter is one of my favourite sounds."],
+["Your personality","There is no one else quite like you, and that is your magic."],
+["Your confidence","I admire the way you carry yourself and keep becoming stronger."],
+["Your intelligence","Your thoughts, ideas and curiosity make you even more wonderful."],
+["Your beautiful heart","The goodness inside you makes your beauty even brighter."],
+["Your little habits","Even your smallest habits have become things I adore."],
+["Your presence","You make moments feel special just by being there."],
+["Your dreams","I love that you have dreams and a future worth chasing."],
+["Your strength","You are stronger than you sometimes give yourself credit for."],
+["Your uniqueness","Nobody could ever replace the person you are."],
+["Your expressions","Your adorable expressions can make me smile instantly."],
+["Your determination","I admire your willingness to keep moving forward."],
+["Your honesty","The real and genuine person you are means so much."],
+["Your energy","You bring your own special light wherever you go."],
+["Your ambition","I hope you always chase the things that make your heart happy."],
+["Your soul","There is a beautiful warmth in the person you are."],
+["Simply YOU","Because you do not need to be anyone else to be extraordinary."]
+];
+const reasonsGrid=document.getElementById("reasonsGrid");
+reasons.forEach(([title,detail],i)=>{
+ const card=document.createElement("div");
+ card.className="card reason";
+ card.innerHTML=`<span class="number">REASON ${String(i+1).padStart(2,"0")}</span>
+ <div class="reveal">${title} 💗</div><div class="detail">${detail}</div>
+ <span class="small">Tap to reveal</span>`;
+ card.addEventListener("click",()=>card.classList.toggle("open"));
+ reasonsGrid.appendChild(card);
+});
+
+// CAKE - 20 CANDLES
+const candles=document.getElementById("candles");
+for(let i=0;i<20;i++){
+ const candle=document.createElement("div");
+ candle.className="candle";
+ const col=i%10,row=Math.floor(i/10);
+ candle.style.left=(37+col*20)+"px";
+ candle.style.top=(row===0?22:42)+"px";
+ candle.innerHTML='<span class="flame"></span>';
+ candles.appendChild(candle);
+}
+function candleElements(){return [...candles.children]}
+document.getElementById("lightBtn").onclick=()=>{
+ candleElements().forEach(c=>c.classList.remove("off"));
+ document.getElementById("cakeMessage").textContent="All twenty candles are glowing! Make a wish, Ishaa! ✨";
+};
+document.getElementById("blowBtn").onclick=()=>{
+ candleElements().forEach(c=>c.classList.add("off"));
+ document.getElementById("cakeMessage").textContent="Wish made! May every beautiful dream come true. 💗";
+};
+document.getElementById("cutBtn").onclick=()=>{
+ document.getElementById("cakeMessage").textContent="🎂 THE CAKE IS CUT! Happy 20th birthday, Princess Ishaa!";
+ celebrate();
+};
+
+// MODAL
+const modal=document.getElementById("modal");
+function showModal(title,message){
+ document.getElementById("modalTitle").textContent=title;
+ document.getElementById("modalText").textContent=message;
+ modal.classList.add("show");
+}
+function closeModal(){modal.classList.remove("show")}
+document.getElementById("closeModal").onclick=closeModal;
+document.getElementById("modalOK").onclick=closeModal;
+modal.addEventListener("click",e=>{if(e.target===modal)closeModal()});
+document.addEventListener("keydown",e=>{if(e.key==="Escape")closeModal()});
+
+// FIVE TREASURE GIFTS
+const gifts=[
+["A secret compliment","You are beautiful in ways that go far beyond what a mirror can show."],
+["A confession","Some of my happiest thoughts begin with you."],
+["A little promise","I promise to always cheer for your dreams and celebrate your wins."],
+["A birthday wish","May your new chapter be filled with peace, adventure and endless happiness."],
+["The biggest secret","If I could gift you one thing, it would be the ability to see yourself through the eyes of someone who adores you."]
+];
+const giftsGrid=document.getElementById("giftsGrid");
+gifts.forEach(([title,message],i)=>{
+ const box=document.createElement("div");box.className="card gift-card";
+ box.innerHTML=`<div class="gift" role="button" tabindex="0" aria-label="Open gift ${i+1}">🎁</div>
+ <h3>Royal Gift ${i+1}</h3><p class="small">A mystery awaits...</p><div class="gift-message"></div>`;
+ const open=()=>{
+  const messageEl=box.querySelector(".gift-message");
+  if(messageEl.dataset.open)return;
+  messageEl.dataset.open="yes";
+  box.querySelector(".gift").textContent="💝";
+  messageEl.textContent=title+": "+message;
+ };
+ box.querySelector(".gift").addEventListener("click",open);
+ box.querySelector(".gift").addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();open()}});
+ giftsGrid.appendChild(box);
+});
+
+// GALAXY STARS
+const starMessages=[
+"Your smile is my favourite sunrise.",
+"You are a little piece of magic.",
+"Your heart deserves the gentlest happiness.",
+"You shine even when you don't notice it.",
+"The world is lucky to have you.",
+"You are more precious than all these stars.",
+"Your dreams deserve the entire universe.",
+"You make ordinary moments sparkle.",
+"You are wonderfully, beautifully you.",
+"If stars could talk, they would tell you how special you are.",
+"Your kindness is its own constellation.",
+"Twenty years of you is twenty years of magic."
+];
+const stars=document.getElementById("stars");
+starMessages.forEach((message,i)=>{
+ const button=document.createElement("button");button.className="star";
+ button.innerHTML=`✦<span>Star ${i+1}</span>`;
+ button.addEventListener("click",()=>document.getElementById("starMessage").textContent="✨ "+message);
+ stars.appendChild(button);
+});
+
+// OPEN WHEN LETTERS
+const letters=[
+["Open when you miss me","Close your eyes for a moment. Imagine a warm hug and remember that you are always worth thinking about."],
+["Open when you're sad","You don't have to be happy every moment. Take your time, breathe, and remember that difficult days do not define you."],
+["Open when you doubt your beauty","Please never let one difficult day make you forget how wonderfully beautiful you are, inside and out."],
+["Open when you need a smile","Here is your official reminder: you are adorable, precious and deserving of a hundred reasons to smile."],
+["Open when you feel alone","Even on quiet days, you matter. Your feelings matter. You deserve kindness, care and connection."],
+["Open when you wonder how much I love you","More than a hundred messages, more than a thousand compliments, and more than this little website could ever express."]
+];
+const lettersGrid=document.getElementById("lettersGrid");
+letters.forEach(([title,message])=>{
+ const card=document.createElement("div");card.className="card letter";
+ card.innerHTML=`<div class="env">💌</div><h3>${title}</h3><span class="small">Tap to open</span><p>${message}</p>`;
+ card.addEventListener("click",()=>card.classList.toggle("open"));
+ lettersGrid.appendChild(card);
+});
+
+// 100 I LOVE YOU
+document.getElementById("loveBtn").onclick=()=>{
+ const wall=document.getElementById("loveWall");
+ if(wall.children.length)return;
+ for(let i=1;i<=100;i++){
+  const word=document.createElement("div");word.className="love-word";
+  word.style.animationDelay=(i*.012)+"s";
+  word.textContent="I LOVE YOU ♡";
+  word.title="Number "+i;
+  wall.appendChild(word);
+ }
+ document.getElementById("loveBtn").textContent="100 little confessions revealed 💗";
+};
+
+// WISH GENERATOR
+const wishes=[
+"May your heart always find reasons to smile.",
+"May every dream you carry find a beautiful path.",
+"May you always know your worth.",
+"May this year surprise you with wonderful opportunities.",
+"May you find courage in difficult moments.",
+"May your laughter be louder than your worries.",
+"May you travel, explore and discover beautiful things.",
+"May you always be surrounded by genuine kindness.",
+"May your confidence grow with every new chapter.",
+"May life be as beautiful to you as you are to the world.",
+"May you achieve things your younger self once dreamed of.",
+"May you never stop believing in your magic."
+];
+document.getElementById("wishBtn").onclick=()=>{
+ document.getElementById("wishText").textContent=wishes[Math.floor(Math.random()*wishes.length)];
+};
+
+// CERTIFICATE
+document.getElementById("printBtn").onclick=()=>window.print();
+
+// SCRATCH CARD
+const canvas=document.getElementById("scratchCanvas");
+const ctx=canvas.getContext("2d");
+let scratching=false;
+function resetScratch(){
+ ctx.globalCompositeOperation="source-over";
+ ctx.fillStyle="#d68db1";ctx.fillRect(0,0,canvas.width,canvas.height);
+ ctx.fillStyle="#fff";ctx.font="bold 19px Poppins";ctx.textAlign="center";
+ ctx.fillText("SCRATCH HERE ✨",canvas.width/2,canvas.height/2+7);
+}
+resetScratch();
+function scratch(e){
+ if(!scratching)return;
+ const rect=canvas.getBoundingClientRect();
+ const x=(e.clientX-rect.left)*canvas.width/rect.width;
+ const y=(e.clientY-rect.top)*canvas.height/rect.height;
+ ctx.globalCompositeOperation="destination-out";
+ ctx.beginPath();ctx.arc(x,y,19,0,Math.PI*2);ctx.fill();
+}
+canvas.addEventListener("pointerdown",e=>{scratching=true;canvas.setPointerCapture(e.pointerId);scratch(e)});
+canvas.addEventListener("pointermove",scratch);
+canvas.addEventListener("pointerup",()=>scratching=false);
+canvas.addEventListener("pointercancel",()=>scratching=false);
+document.getElementById("resetScratch").onclick=resetScratch;
+
+// FINAL LETTER
+document.getElementById("finalLetterBtn").onclick=()=>{
+ const letter=document.getElementById("finalLetter");
+ letter.classList.toggle("hidden");
+ document.getElementById("finalLetterBtn").textContent=
+ letter.classList.contains("hidden")?"Open my heart ❤️":"Close letter 💗";
+ if(!letter.classList.contains("hidden"))letter.scrollIntoView({behavior:"smooth",block:"nearest"});
+};
+
+// MUSIC - ONLY AFTER USER INTERACTION
+const music=document.getElementById("bgMusic");
+const musicBtn=document.getElementById("musicBtn");
+let musicPlaying=false;
+musicBtn.onclick=async()=>{
+ if(musicPlaying){music.pause();musicPlaying=false;musicBtn.textContent="♫";return}
+ try{await music.play();musicPlaying=true;musicBtn.textContent="Ⅱ"}
+ catch(e){showModal("Music is not ready","Add a free-to-use audio file named birthday-music.mp3 to your repository and try again.")}
+};
+
+// CELEBRATION
+const fireCanvas=document.getElementById("fireworks");
+const fctx=fireCanvas.getContext("2d");
+let particles=[];
+function resizeCanvas(){
+ fireCanvas.width=innerWidth*devicePixelRatio;
+ fireCanvas.height=innerHeight*devicePixelRatio;
+ fctx.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0);
+}
+resizeCanvas();addEventListener("resize",resizeCanvas);
+function burst(){
+ const x=Math.random()*innerWidth,y=Math.random()*innerHeight*.65;
+ for(let i=0;i<65;i++){
+  const angle=Math.PI*2*i/65,speed=1+Math.random()*4;
+  particles.push({x,y,vx:Math.cos(angle)*speed,vy:Math.sin(angle)*speed,
+   life:70+Math.random()*25,color:["#f4b6d4","#fff0b0","#cdbbff","#fff"][Math.floor(Math.random()*4)]});
+ }
+}
+function animateFireworks(){
+ fctx.clearRect(0,0,innerWidth,innerHeight);
+ particles=particles.filter(p=>p.life>0);
+ particles.forEach(p=>{
+  p.x+=p.vx;p.y+=p.vy;p.vy+=.035;p.life--;
+  fctx.globalAlpha=Math.max(0,p.life/90);
+  fctx.fillStyle=p.color;fctx.beginPath();fctx.arc(p.x,p.y,3,0,Math.PI*2);fctx.fill();
+ });
+ fctx.globalAlpha=1;
+ requestAnimationFrame(animateFireworks);
+}
+animateFireworks();
+function celebrate(){
+ for(let i=0;i<6;i++)setTimeout(burst,i*350);
+}
+document.getElementById("celebrateBtn").onclick=()=>{
+ celebrate();
+ showModal("Happy 20th Birthday, Ishaa! 👑","May your life be filled with magic, laughter, wonderful adventures and all the happiness you deserve. You are loved! ❤️");
+};
+
+// SMALL DECORATIVE FLOATING HEARTS
+function floatingHeart(){
+ const heart=document.createElement("div");
+ heart.textContent=["♡","✦","🦋","♥"][Math.floor(Math.random()*4)];
+ heart.style.cssText=`position:fixed;left:${Math.random()*100}vw;bottom:-35px;z-index:1;
+ pointer-events:none;color:#d58ab1;font-size:${12+Math.random()*18}px;
+ animation:heartRise ${5+Math.random()*5}s linear forwards`;
+ document.body.appendChild(heart);
+ setTimeout(()=>heart.remove(),10000);
+}
+const style=document.createElement("style");
+style.textContent="@keyframes heartRise{to{transform:translateY(-110vh) rotate(360deg);opacity:0}}";
+document.head.appendChild(style);
+setInterval(floatingHeart,1800);
+</script>
+</body>
+</html>
+
